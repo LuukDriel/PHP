@@ -1,0 +1,26 @@
+html ,body {
+    height: 100%;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.Home-container {
+    display: flex;
+    justify-content: center; /* Horizontale centrering */
+    align-items: center;    /* Verticale centrering */
+    height: 100vh;          /* Zorg ervoor dat het 100% van de viewport hoogte beslaat */
+    flex-direction: column;
+    background-color: beige;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: x-large;
+    margin: 0;
+}

@@ -15,12 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $hased_password = password_hash($wachtwoord, PASSWORD_DEFAULT);
+    $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
     $registratie = [
         'naam' => $naam,
         'email' => $email,
-        'wachtwoord' => $hashedWachtwoord,
+        'wachtwoord' => $hashed_wachtwoord,
     ];
 
     echo "Registratie gelukt! <br>";

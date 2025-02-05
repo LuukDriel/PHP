@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webwinkel</title>
+    <link rel="stylesheet" href="CSS/Styleopdracht3.CSS">
 </head>
 <body>
-    <a href="PHP/Registratie.php">Klik hier om te registreren</a>
+    <button>
+        <a href="PHP/Registratie.php">Registratie</a>
+    </button>
 </body>
 </html>

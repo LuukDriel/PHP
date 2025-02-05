@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "E-mail: " . $registratie['email'] . "<br>";
 }
 
-$sql = "INSERT INTO gebruikers (gebruikersnaam, email, wachtwoord) VALUES ('" . $registratie['naam'] . "', '" . $registratie['email'] . "', '" . $registratie['wachtwoord'] . "')";
+$sql = "INSERT IGNORE INTO gebruikers (gebruikersnaam, email, wachtwoord) VALUES ('" . $registratie['naam'] . "', '" . $registratie['email'] . "', '" . $registratie['wachtwoord'] . "')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Registratie succesvol";

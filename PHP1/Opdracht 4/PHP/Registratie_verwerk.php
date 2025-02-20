@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $wachtwoord = $_POST["wachtwoord"];
     $wachtwoord_herhaal = $_POST["wachtwoord_herhaal"];
 
-/* controleert als emai al bestaat */
+/* controleert als email al bestaat */
 $checkemail = "SELECT * FROM gebruikers WHERE email = ?";
 $stmt = $conn->prepare($checkemail);
 $stmt->bind_param("s", $email);

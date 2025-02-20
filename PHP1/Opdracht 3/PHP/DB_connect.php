@@ -22,6 +22,6 @@ die("Verbinding mislukt: " . $conn->connect_error);
 
 }
 
-echo "Verbinding succesvol!";
+echo "Verbinding succesvol!". "<br>"; 
 
 ?>

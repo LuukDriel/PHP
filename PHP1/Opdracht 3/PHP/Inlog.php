@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inlog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../CSS/Styleopdracht3.CSS">
 </head>
 <body>
-    <form action="Inlog_verwerk.php" method="post" class="container mt-5">
+    <form action="verwerk_inlog.php" method="post" class="container mt-5">
         <div class="form-group">
             <label for="email">E-mail</label>
             <input type="email" class="form-control" id="email" name="email" required>

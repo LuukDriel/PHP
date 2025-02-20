@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="CSS/styleopdracht3.CSS">
 </head>
 <body>
-    <button id="reg-knop">
-        <a href="PHP/Registratie.php">Registratie</a>
-    </button>
+    <section class="index">
+        <div class="buttons">
+            <a href="PHP/Registratie.php" class="button">Registreren</a>
+            <a href="PHP/Inlog.php" class="button">Inloggen</a>
+        </div>
+    </section>
 </body>
 </html>

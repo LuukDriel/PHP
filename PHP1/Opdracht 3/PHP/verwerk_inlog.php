@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($naam, $email, $wachtwoord_hash);
+        $stmt->bind_result($gebruikersnaam, $wachtwoord_hash);
         $stmt->fetch();
         
         if (password_verify($wachtwoord, $wachtwoord_hash)) {
-            echo "Welkom " . $naam;
+            echo "Welkom " . $gebruikersnaam;
         } else {
             echo "Wachtwoord is onjuist";
         }

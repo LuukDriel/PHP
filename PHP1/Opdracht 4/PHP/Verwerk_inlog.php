@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
         if (password_verify($wachtwoord, $wachtwoord_hash)) {
             echo "<p class='success'>Inloggen succesvol Welkom, " . $gebruikersnaam . "</p>";
-            $_SESSION['gebruiker_id'] = $id;
+            $_SESSION['user_id'] = $id; // Correcte sessievariabele naam
             $_SESSION['gebruiker_naam'] = $gebruikersnaam;
         } else {
             echo "<p class='error'>Wachtwoord is onjuist</p>";
@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <link rel="stylesheet" href="../CSS/style.CSS">
 </head>
 <body>
-    
+    <a href="../Index.php" class="button">Terug naar home</a>
+    <a href="Bestellen.php" class="button">Bestellen</a>
 </body>
 </html>

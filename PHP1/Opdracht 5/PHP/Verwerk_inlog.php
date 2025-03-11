@@ -23,9 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['gebruiker_naam'] = $gebruikersnaam;
         } else {
             echo "<p class='error'>Wachtwoord is onjuist</p>";
+            header("Location: Inlog.php?error=onjuist_wachtwoord");
+            exit();
         }
     } else {
         echo "<p class='error'>E-mail bestaat niet</p>";
+        header("Location: Inlog.php?error=onjuist_email");
+        exit();
     }
     
     $stmt->close();

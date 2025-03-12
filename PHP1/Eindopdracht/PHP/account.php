@@ -63,7 +63,7 @@ if ($result->num_rows == 0) {
         <button type="submit" class="btn btn-primary">Opslaan</button>
     <form>
     <a href="uitloggen.php" class="btn btn-primary">Uitloggen</a>
-    <a href="delete_account.php" class="btn btn-danger">Verwijder account</a>
+    <a href="verwijder_account.php" class="btn btn-danger">Verwijder account</a>
     <a href="../Index.php" class="btn btn-primary">Terug</a>
 
     <h2 id="bestelling">Mijn bestellingen</h2>

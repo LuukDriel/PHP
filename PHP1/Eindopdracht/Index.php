@@ -16,6 +16,11 @@
             <a href="PHP/account.php" class="button">Account</a>
             <?php
             session_start();
+            if (isset($_SESSION['user_id'])) {
+                echo '<a href="PHP/Bestellen.php" class="button">Bestellen</a>';
+                echo '<a href="PHP/Review.php" class="button">Review</a>';
+            }
+
             if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
                 echo '<a href="PHP/beheer_product.php" class="button">Beheer producten</a>';
             }

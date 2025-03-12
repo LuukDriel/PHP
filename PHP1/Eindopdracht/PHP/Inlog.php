@@ -14,6 +14,8 @@
             echo "<p class='error'>E-mail bestaat niet</p>";
         } elseif ($_GET['error'] == 'onjuist_wachtwoord') {
             echo "<p class='error'>Wachtwoord is onjuist</p>";
+        } elseif ($_GET['error'] == 'niet_ingelogt') {
+            echo "<p class='error'>Je moet ingelogt zijn</p>";
         }
     }
     ?>

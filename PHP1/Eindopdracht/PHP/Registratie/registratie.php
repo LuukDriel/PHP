@@ -9,6 +9,7 @@
 </head>
 <body class="container">
     <?php
+    // controleert als er een error is
     if (isset($_GET['error'])) {
         if ($_GET['error'] == 'email_bestaat') {
             echo "<p class='error'>E-mail bestaat al</p>";
@@ -19,6 +20,7 @@
         }
     }
     ?>
+    <!-- formulier om te registreren -->
     <form action="verwerk_registratie.php" method="post" class="container mt-5">
         <div class="form-group">
             <label for="naam">gebruikersnaam:</label>

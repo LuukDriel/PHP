@@ -19,6 +19,7 @@
         }
     }
     ?>
+    <!-- formulier om in te loggen -->
     <form action="verwerk_inlog.php" method="post" class="container mt-5">
         <div class="form-group">
             <label for="email">E-mail</label>

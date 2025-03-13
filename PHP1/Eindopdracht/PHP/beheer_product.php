@@ -4,13 +4,13 @@ session_start();
 
 include 'DB_connect.php';
 
-// Check als beheerer is ingelogt
+// check als beheerer is ingelogt
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
     exit;
 }
 
-// Update voorraad
+// update voorraad
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $product_id = $_POST['product_id'];
     $product_naam = $_POST['product_naam'];
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     }
 }
 
-// Verwijdert voorraad
+// verwijdert voorraad
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verwijder'])) {
     $product_id = $_POST['product_id'];
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verwijder'])) {
     }
 }
 
-// Voeg nieuw product toe
+// voeg nieuw product toe
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['toevoegen'])) {
     $product_naam = $_POST['product_naam'];
     $product_aantal = $_POST['product_voorraad'];
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['toevoegen'])) {
     }
 }
 
-// Haalt voorraad op
+// haalt voorraad op
 $sql = "SELECT * FROM producten";
 $result = $conn->query($sql);
 ?>

@@ -17,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->bind_result($id, $gebruikersnaam, $wachtwoord_hash, $is_admin);
         $stmt->fetch();
         
+        // controleert als het wachtwoord klopt
         if (password_verify($wachtwoord, $wachtwoord_hash)) {
             echo "<p class='success'>Inloggen succesvol Welkom, " . $gebruikersnaam . "</p>";
-            $_SESSION['user_id'] = $id;
+            $_SESSION['user_id'] = $id; // maakt session aan
             $_SESSION['gebruiker_naam'] = $gebruikersnaam;
-            if ($is_admin) {
+            if ($is_admin) { // controleert als de gebruiker een admin is
                 $_SESSION['admin_logged_in'] = true;
             }
         } else {

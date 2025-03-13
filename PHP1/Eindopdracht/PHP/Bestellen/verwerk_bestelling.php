@@ -26,8 +26,9 @@ try {
         $aantal = $_POST['aantal'][$key];
         if ($aantal > 0) {
             $prijs = product_prijs($conn, $product_id);
-            $totaalprijs = $prijs * $aantal;
+            $totaalprijs = $prijs * $aantal; // rekent de totaalprijs uit
 
+            // voegt de bestelling toe aan de database
             $sql = "INSERT INTO bestellingen (gebruiker_id, product_id, aantal, totaalprijs) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             if (!$stmt) {

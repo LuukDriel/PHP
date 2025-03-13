@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../DB_connect.php';
 
-$gebruiker_id = $_SESSION['user_id']; // haal de gebruiker_id uit de sessie
+$gebruiker_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM gebruikers WHERE gebruiker_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $gebruiker_id);

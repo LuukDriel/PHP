@@ -19,6 +19,7 @@ include '../DB_connect.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../CSS/style.css">
 </head>
+
 <body class="container mt-5">
     <h1 class="text-center mb-4">Laat een review achter</h1>
     <form action="verwerk_review.php" method="post" class="container mt-5">
@@ -38,9 +39,9 @@ include '../DB_connect.php';
 
     <h2 class="text-center mt-5">Alle reviews</h2>
     <?php
-    $sql = "SELECT reviews.rating, reviews.review_text, gebruikers.gebruikersnaam 
+    $sql = "SELECT reviews.rating, reviews.review_text, gebruikers.gebruikersnaam
             FROM reviews 
-            JOIN gebruikers ON reviews.gebruiker_id = gebruikers.gebruiker_id";
+            JOIN gebruikers ON reviews.gebruiker_id = gebruikers.gebruiker_id"; // haalt de reviews op uit de database
     $result = $conn->query($sql);
     if ($result === false) {
         echo "<p>Er is een fout opgetreden bij het ophalen van de reviews.</p>";

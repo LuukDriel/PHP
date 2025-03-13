@@ -2,11 +2,13 @@
 session_start();
 include '../DB_connect.php';
 
+// controleert als de gebruiker is ingelogd
 if (!isset($_SESSION['user_id'])) {
     echo "Je bent niet ingelogd! Log in om te bestellen";
     exit();    
 }
 
+// haalt alle producten op
 try {
     $sql = "SELECT * FROM producten";
     $stmt = $conn->prepare($sql);
@@ -27,11 +29,13 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../CSS/style.css">
 </head>
+
 <body class="container">
     <h2>Bestel Producten</h2>
     <form action="verwerk_bestelling.php" method="post">
     <div class="row">
     <?php
+    // toont alle producten
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             if (isset($row['product_id']) && isset($row['naam']) && isset($row['prijs']) && isset($row['beschrijving'])) {

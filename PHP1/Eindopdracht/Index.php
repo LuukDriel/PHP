@@ -11,9 +11,9 @@
 <body class="container">
     <section class="index">
         <div class="buttons">
-            <a href="PHP/Registratie.php" class="button">Registreren</a>
-            <a href="PHP/Inlog.php" class="button">Inloggen</a>
-            <a href="PHP/account.php" class="button">Account</a>
+            <a href="PHP/Registratie/registratie.php" class="button">Registreren</a>
+            <a href="PHP/Inlog/inlog.php" class="button">Inloggen</a>
+            <a href="PHP/Account/account.php" class="button">Account</a>
             <?php
             session_start();
             if (isset($_SESSION['user_id'])) {

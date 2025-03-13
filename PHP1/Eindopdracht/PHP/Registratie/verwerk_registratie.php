@@ -79,6 +79,6 @@ $conn->close();
     </div>
     <br>
     <a href="../Index.php" class="button">Terug naar home</a>
-    <a href="Inlog.php" class="button">Inloggen</a>
+    <a href="z../Inlog/inlog" class="button">Inloggen</a>
 </body>
 </html>

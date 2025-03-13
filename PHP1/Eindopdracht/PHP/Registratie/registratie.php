@@ -19,7 +19,7 @@
         }
     }
     ?>
-    <form action="Registratie_verwerk.php" method="post" class="container mt-5">
+    <form action="verwerk_registratie.php" method="post" class="container mt-5">
         <div class="form-group">
             <label for="naam">gebruikersnaam:</label>
             <input type="text" class="form-control" name="naam" id="naam" required>

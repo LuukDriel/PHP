@@ -1,6 +1,6 @@
 <?php
 
-include("DB_connect.php");
+include("../DB_connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $naam = $_POST["naam"];
@@ -66,7 +66,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>registratie</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 <body class="container">
     <div class="echo-text">
@@ -78,7 +78,7 @@ $conn->close();
         ?>
     </div>
     <br>
-    <a href="../Index.php" class="button">Terug naar home</a>
-    <a href="z../Inlog/inlog" class="button">Inloggen</a>
+    <a href="../../Index.php" class="button">Terug naar home</a>
+    <a href="../Inlog/inlog.php" class="button">Inloggen</a>
 </body>
 </html>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 $gebruiker_id = $_SESSION['user_id']; // haal de gebruiker_id uit de sessie
 $sql = "SELECT * FROM gebruikers WHERE gebruiker_id = ?";
@@ -64,7 +64,7 @@ if ($result->num_rows == 0) {
     <form>
     <a href="uitloggen.php" class="btn btn-primary">Uitloggen</a>
     <a href="verwijder_account.php" class="btn btn-danger">Verwijder account</a>
-    <a href="../Index.php" class="btn btn-primary">Terug</a>
+    <a href="../../Index.php" class="btn btn-primary">Terug</a>
 
     <h2 id="bestelling">Mijn bestellingen</h2>
     <?php

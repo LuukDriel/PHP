@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +17,11 @@ include 'DB_connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 <body class="container mt-5">
     <h1 class="text-center mb-4">Laat een review achter</h1>
-    <form action="Verwerk_review.php" method="post" class="container mt-5">
+    <form action="verwerk_review.php" method="post" class="container mt-5">
         <div class="form-group mb-3">
             <label for="rating" class="form-label">Rating</label>
             <input type="number" class="form-control" id="rating" name="rating" required min="1" max="5">
@@ -34,7 +34,7 @@ include 'DB_connect.php';
             <input type="submit" value="Verstuur" class="btn btn-primary">
         </div>
     </form>
-    <a href="../Index.php" class="btn btn-primary">Terug naar home</a>
+    <a href="../../Index.php" class="btn btn-primary">Terug naar home</a>
 
     <h2 class="text-center mt-5">Alle reviews</h2>
     <?php

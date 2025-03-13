@@ -17,8 +17,8 @@
             <?php
             session_start();
             if (isset($_SESSION['user_id'])) {
-                echo '<a href="PHP/Bestellen.php" class="button">Bestellen</a>';
-                echo '<a href="PHP/Review.php" class="button">Review</a>';
+                echo '<a href="PHP/Bestellen/bestellen.php" class="button">Bestellen</a>';
+                echo '<a href="PHP/Review/review.php" class="button">Review</a>';
             }
 
             if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {

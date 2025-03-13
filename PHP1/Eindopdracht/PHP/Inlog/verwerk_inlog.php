@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $_POST['email'];
@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         } else {
             echo "<p class='error'>Wachtwoord is onjuist</p>";
-            header("Location: Inlog.php?error=onjuist_wachtwoord");
+            header("Location: inlog.php?error=onjuist_wachtwoord");
             exit();
         }
     } else {
         echo "<p class='error'>E-mail bestaat niet</p>";
-        header("Location: Inlog.php?error=onjuist_email");
+        header("Location: inlog.php?error=onjuist_email");
         exit();
     }
     
@@ -46,10 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inlog</title>
-    <link rel="stylesheet" href="../CSS/style.CSS">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../CSS/style.CSS">
 </head>
 <body class="container">
-    <a href="../Index.php" class="button">Terug naar home</a>
-    <a href="Bestellen.php" class="button">Bestellen</a>
+    <a href="../../Index.php" class="button">Terug naar home</a>
+    <a href="../Bestellen/bestellen.php" class="button">Bestellen</a>
 </body>
 </html>

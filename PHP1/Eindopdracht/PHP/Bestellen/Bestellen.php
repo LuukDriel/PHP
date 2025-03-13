@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo "Je bent niet ingelogd! Log in om te bestellen";
@@ -25,7 +25,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestellen</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 <body class="container">
     <h2>Bestel Producten</h2>
@@ -59,7 +59,7 @@ try {
     }
     ?>
     </div>
-    <button type="submit" class="btn btn-primary">Bestellen</button>
+    <button type="submit" class="btn btn-primary" id="bestel-knop">Bestellen</button>
     </form>
 </body>
 </html>

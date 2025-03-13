@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $rating = $_POST['rating'];
@@ -29,6 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-header("Location: Review.php");
+header("Location: review.php");
 
 ?>

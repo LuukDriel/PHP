@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inlog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 <body class="container">
     <?php
@@ -30,8 +30,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Inloggen</button>
     </form>
-    <a href="../Index.php" class="btn btn-primary">Terug naar home</a>
-    <a href="Registratie.php" class="btn btn-primary">Registreren</a>
+    <a href="../../Index.php" class="btn btn-primary">Terug naar home</a>
+    <a href="../Registratie/registratie.php" class="btn btn-primary">Registreren</a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

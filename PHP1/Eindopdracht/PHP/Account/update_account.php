@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo 'U bent niet ingelogd';
@@ -20,12 +20,12 @@ $wachtwoord_herhaal = $_POST['wachtwoord_herhaal'];
 
 // controleert of de wachtwoorden kloppen
 if ($wachtwoord != $wachtwoord_herhaal) {
-    echo 'Wachtwoorden komen niet overeen';
+    header('Location: account.php?error=wachtwoord_heraal');
     exit();
 }
 
-if (strlen($wachtwoord) <8 ) {
-    echo "Wachtwoord moet minimaal 8 tekens lang zijn";
+if (strlen($wachtwoord) < 8) {;
+    header('Location: account.php?error=wachtwoord_lengte');
     exit;
 }
 
@@ -35,16 +35,21 @@ $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 // update de gegevens in de database
 $sql = "UPDATE gebruikers SET gebruikersnaam = ?, voornaam = ?, achternaam = ?, email = ?, wachtwoord = ? WHERE gebruiker_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssi", $naam, $voornaam, $achternaam, $email, $hashed_wachtwoord, $gebruiker_id);
-$stmt->execute();
-$stmt->close();
 
-// controleert of de gegevens zijn bijgewerkt
-if ($conn->query($sql) === TRUE) {
-    echo "Account bijgewerkt";
-    header('Location: account.php');
-} else {
-    echo "Fout bij bijwerken account: " . $conn->error;
+if ($stmt === false) {
+    echo "Fout bij voorbereiden van de query: " . $conn->error;
+    exit();
 }
 
+$stmt->bind_param("sssssi", $naam, $voornaam, $achternaam, $email, $hashed_wachtwoord, $gebruiker_id);
+
+if ($stmt->execute()) {
+    echo "Account bijgewerkt";
+    header('Location: account.php');
+    exit();
+} else {
+    echo "Fout bij bijwerken account: " . $stmt->error;
+}
+
+$stmt->close();
 $conn->close();

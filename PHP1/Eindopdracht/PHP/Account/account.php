@@ -24,6 +24,15 @@ if ($result->num_rows == 0) {
     exit();
 }
 
+//error berichten
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 'wachtwoord_heraal') {
+        echo 'Wachtwoorden komen niet overeen';
+    } elseif ($_GET['error'] == 'wachtwoord_lengte') {
+        echo 'Wachtwoord moet minimaal 8 tekens lang zijn';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>

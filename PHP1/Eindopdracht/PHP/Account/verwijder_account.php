@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'DB_connect.php';
+include '../DB_connect.php';
 
 if (isset($_SESSION['user_id'])) {
     $gebruiker_id = $_SESSION['user_id'];
@@ -22,7 +22,7 @@ if (isset($_SESSION['user_id'])) {
 
     $conn->close();
     session_destroy();
-    header("Location: ../Index.php");
+    header("Location: ../../Index.php");
 } else {
     echo 'U bent niet ingelogd';
     exit();

@@ -1,83 +1,40 @@
 <?php
-class User {
-    // Privé eigenschappen
-    private $name;
-    private $email;
-    private $role; // Nieuwe eigenschap voor rol
 
-    // Constructor om eigenschappen in te stellen
-    public function __construct($name, $email, $role) {
-        $this->name = $name;
-        $this->email = $email;
-        $this->setRole($role); // Rol instellen via setter
+class Car {
+    public $brand;
+    public $color;
+    private $owner;
+
+    public function __construct($brand, $color, $owner) {
+        $this->brand = $brand;
+        $this->color = $color;
+        $this->setOwner($owner);
     }
 
-    // Getter voor naam
-    public function getName() {
-        return $this->name;
+    // Getters
+    public function getOwner() {
+        return $this->owner;
     }
 
-    // Setter voor naam
-    public function setName($name) {
-        if (strlen($name) > 0) {
-            $this->name = $name;
+    // Setters
+    public function setOwner($owner) {
+            $this->owner = $owner;
+    }
+    public function ShowDetails() {
+        echo "Het merk van de auto is " . $this->brand . " en de kleur is " . $this->color .  "<br>";
+    }
+
+    public function isOwner() {
+        if ($this->owner) {
+            echo "De eigenaar van de auto is " . $this->owner . "<br>";
         } else {
-            echo "Naam kan niet leeg zijn.<br>";
+            echo "De eigenaar van de auto is niet bekend.<br>";
         }
-    }
-
-    // Getter voor email
-    public function getEmail() {
-        return $this->email;
-    }
-
-    // Setter voor email
-    public function setEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->email = $email;
-        } else {
-            echo "Ongeldig e-mailadres.<br>";
-        }
-    }
-
-    // Getter voor rol
-    public function getRole() {
-        return $this->role;
-    }
-
-    // Setter voor rol
-    public function setRole($role) {
-        $validRoles = ['admin', 'user']; // Alleen 'admin' en 'user' zijn geldig
-        if (in_array($role, $validRoles)) {
-            $this->role = $role;
-        } else {
-            echo "Ongeldige rol.<br>";
-        }
-    }
-
-    // Methode om te controleren of de rol 'admin' is
-    public function isAdmin() {
-        return $this->role === 'admin';
-    }
-
-    // Methode om de gebruiker te introduceren
-    public function introduce() {
-        echo "Hallo, mijn naam is " . $this->getName() . " en mijn e-mail is " . $this->getEmail() . ". Mijn rol is " . $this->getRole() . ".<br>";
     }
 }
 
-// Aanmaken van een object en gebruik maken van getters en setters
-$user1 = new User("Jan Jansen", "jan@example.com", "user");
-$user1->introduce();
+$car1 = new Car("Audi", "Zwart", "Piet");
+$car1->ShowDetails();
+$car1->isOwner();
 
-// Veranderen van de rol naar 'admin'
-$user1->setRole("admin");
-$user1->introduce();
-
-// Controleren of de gebruiker admin is
-if ($user1->isAdmin()) {
-    echo $user1->getName() . " is een admin.<br>";
-} else {
-    echo $user1->getName() . " is geen admin.<br>";
-}
 ?>

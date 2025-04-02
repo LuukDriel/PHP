@@ -72,29 +72,50 @@ class User {
         }
     }
 
-    // Methode om te controleren of de rol 'admin' is
-    public function isAdmin() {
-        return $this->role === 'admin';
-    }
-
     // Methode om de gebruiker te introduceren
     public function introduce() {
         echo "Hallo, mijn naam is " . $this->getName() . ", Mijn geboortedatum is " . $this->getdateofbirth() . " en mijn e-mail is " . $this->getEmail() . ". Mijn rol is " . $this->getRole() . ".<br>";
     }
 }
 
-// Aanmaken van een object en gebruik maken van getters en setters
-$user1 = new User("Jan Jansen", "12-04-2000", "jan@example.com", "user");
-$user1->introduce();
+class AdminUser extends User {
+    // Eigenschap voor permissies
+    private $permissions;
 
-// Veranderen van de rol naar 'admin'
-$user1->setRole("admin");
-$user1->introduce();
+    // Constructor om de AdminUser te initialiseren
+    public function __construct($name, $dateofbirth, $email, $role, $permissions) {
+        // Roep de constructor van de User-klasse aan
+        parent::__construct($name, $dateofbirth, $email, $role);
 
-// Controleren of de gebruiker admin is
-if ($user1->isAdmin()) {
-    echo $user1->getName() . " is een admin.<br>";
-} else {
-    echo $user1->getName() . " is geen admin.<br>";
+        // Stel de permissies in
+        $this->permissions = $permissions;
+    }
+
+    // Methode om de permissies te tonen
+    public function displayPermissions() {
+        echo "Permissies van admin " . $this->getName() . ": " . implode(", ", $this->permissions) . ".<br>";
+    }
+
+    // Getter voor permissies
+    public function getPermissions() {
+        return $this->permissions;
+    }
+
+    // Setter voor permissies
+    public function setPermissions($permissions) {
+        if (is_array($permissions)) {
+            $this->permissions = $permissions;
+        } else {
+            echo "Permissies moeten een array zijn.<br>";
+        }
+    }
 }
-?>
+
+// Aanmaken van een object en gebruik maken van getters en setters
+
+$user1 = new User("Pieter piet", "05-05-2000", "piet@example.com", "user"); 
+$user1->introduce();
+
+$admin1 = new AdminUser("Admin Jansen", "01-01-2000", "admin@example.com", "admin", ["manage_users", "view_reports"]);
+$admin1->introduce();
+$admin1->displayPermissions();

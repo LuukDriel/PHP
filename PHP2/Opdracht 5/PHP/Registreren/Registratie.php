@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body class="container">
+    <section class="message">
+        <?php 
+        if (isset($_GET['email']) && $_GET['email'] == 'bestaat') {
+            echo "<div class='alert alert-danger messages'>E-mail bestaat al</div>";
+        }
+
+        if (isset($_GET['wachtwoord']) && $_GET['wachtwoord'] == 'verschil') {
+            echo "<div class='alert alert-danger'>Wachtwoorden komen niet overeen</div>";
+        }
+        
+        ?>
     <form action="Registratie_verwerk.php" method="post" class="container mt-5">
         <div class="form-group">
             <label for="naam">gebruikersnaam:</label>
             <input type="text" class="form-control" name="naam" id="naam" required>
-        </div>
-        <div class="form-group">
-            <label for="adres">Voornaam:</label>
-            <input type="text" class="form-control" name="voornaam" id="voornaam" required>
-        </div>
-        <div class="form-group">
-            <label for="adres">Achternaam:</label>
-            <input type="text" class="form-control" name="achternaam" id="achternaam" required>
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
@@ -28,9 +31,6 @@
         <div class="form-group">
             <label for="wachtwoord">Wachtwoord:</label>
             <input type="password" class="form-control" name="wachtwoord" id="wachtwoord" required>
-            <div class="invalid-feedback">
-                Wachtwoord moet minimaal 8 tekens lang zijn
-            </div>
         </div>
         <div class="form-group">
             <label for="wachtwoord_herhaal">Herhaal wachtwoord:</label>
@@ -38,7 +38,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Registreer</button>
     </form>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

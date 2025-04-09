@@ -1,5 +1,5 @@
 <?php
-include_once 'DB_connect.php';
+include_once '../DB_connect.php';
 class User {
     protected $name;
     protected $email;
@@ -18,34 +18,6 @@ class User {
         $this->setPassword($password);
     }
 
-    // Getter en setter voor naam
-    public function getName() {
-        return $this->name;
-    }
-
-    public function setName($name) {
-            $this->name = $name;
-    }
-
-    // Getter en setter voor email
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-    // Getter en setter voor rol
-    public function getRole() {
-        return $this->role;
-    }
-
-    public function setRole($role) {
-        $validRoles = ['admin', 'user'];
-            $this->role = $role;
-}
-
     // Setter voor wachtwoord
     public function setPassword($password) {
             $this->password = password_hash($password, PASSWORD_BCRYPT);
@@ -62,12 +34,18 @@ class User {
     }
 
     // Methode om in te loggen
-    public function login() {
+    public static function login($email, $password) {
         $stmt = self::$pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return true;
+        }
+        return false;
     }
+        
 
     // Methode om een gebruiker te verwijderen
     public function deleteUser($userId) {

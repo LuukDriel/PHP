@@ -1,26 +1,13 @@
 <?php
 
-$servername = "localhost";
-
-$username = "root"; // Standaard MySQL-gebruiker bij XAMPP
-
-$password = ""; // Standaard MySQL-wachtwoord is leeg bij XAMPP
-
-$database = "webwinkel"; // De naam van je geïmporteerde database
-
-
-// Maak een verbinding
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-
-// Controleer de verbinding
-
-if ($conn->connect_error) {
-
-die("Verbinding mislukt: " . $conn->connect_error);
-
+// pdo configuratie
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=winkel', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Databasefout: " . $e->getMessage() . "<br>");
+} catch (Exception $e) {
+    die("Fout: " . $e->getMessage() . "<br>");
 }
-
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 
 // pdo configuratie
 try {
@@ -9,5 +10,4 @@ try {
 } catch (Exception $e) {
     die("Fout: " . $e->getMessage() . "<br>");
 }
-
 ?>

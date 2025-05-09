@@ -11,6 +11,24 @@ class User {
         self::$pdo = $pdo;
     }
 
+    private static function ensurePDO() {
+        if (!self::$pdo && isset($GLOBALS['pdo'])) {
+            self::setPDO($GLOBALS['pdo']);
+        }
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }
+
     public function __construct($name, $email, $role, $password) {
         $this->setName($name);
         $this->setEmail($email);
@@ -20,11 +38,12 @@ class User {
 
     // Setter voor wachtwoord
     public function setPassword($password) {
-            $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
 
     // Methode om gebruiker te registreren
     public function register() {
+        self::ensurePDO();
         $stmt = self::$pdo->prepare("INSERT INTO users (name, email, role, password) VALUES (:name, :email, :role, :password)");
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':email', $this->email);
@@ -35,6 +54,7 @@ class User {
 
     // Methode om in te loggen
     public static function login($email, $password) {
+        self::ensurePDO();
         $stmt = self::$pdo->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -45,39 +65,26 @@ class User {
         }
         return false;
     }
-        
+    
+    public static function getUserId($email) {
+        self::ensurePDO();
+        $stmt = self::$pdo->prepare("SELECT id FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result ? $result['id'] : null;
+    }
 
     // Methode om een gebruiker te verwijderen
     public function deleteUser($userId) {
+        self::ensurePDO();
         $stmt = self::$pdo->prepare("DELETE FROM users WHERE id = :id");
         $stmt->bindParam(':id', $userId, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 
-    // Methode om een gebruiker bij te werken
-    public function updateUser($userId, $name, $email, $role, $password = null) {
-        $sql = "UPDATE users SET name = :name, email = :email, role = :role";
-        if ($password) {
-            $sql .= ", password = :password";
-        }
-        $sql .= " WHERE id = :id";
-
-        $stmt = self::$pdo->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':id', $userId, \PDO::PARAM_INT);
-
-        if ($password) {
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            $stmt->bindParam(':password', $hashedPassword);
-        }
-
-        return $stmt->execute();
-    }
-
     // Methode om een gebruiker op te halen
     public function getUserById($userId) {
+        self::ensurePDO();
         $stmt = self::$pdo->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->bindParam(':id', $userId, \PDO::PARAM_INT);
         $stmt->execute();
@@ -86,6 +93,7 @@ class User {
 
     // Methode om alle gebruikers op te halen
     public function getAllUsers() {
+        self::ensurePDO();
         $stmt = self::$pdo->query("SELECT * FROM users");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }

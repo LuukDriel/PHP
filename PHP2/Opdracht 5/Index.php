@@ -21,7 +21,7 @@
     <section class="index">
         <div class="buttons">
             <a href="PHP/Registreren/Registratie.php" class="button">Registreren</a>
-            <a href="PHP/Inlog.php" class="button">Inloggen</a>
+            <a href="PHP/Inlog/Inlog.php" class="button">Inloggen</a>
             <a href="PHP/account.php" class="button">Account</a>
         </div>
     </section>

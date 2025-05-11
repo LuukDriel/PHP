@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-include '../User_klasse.php';
-include '../DB_connect.php';
+require_once '../DB_connect.php';
+require_once '../User_klasse.php';
 
+User::setPDO($pdo);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $_POST['email'];
     $wachtwoord = $_POST['wachtwoord'];

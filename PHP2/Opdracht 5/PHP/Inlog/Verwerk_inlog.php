@@ -1,22 +1,22 @@
 <?php
-session_start();
+include_once 'inlog_klasse.php';
+include_once '../DB_Con.php';
 
-require_once '../DB_connect.php';
-require_once '../User_klasse.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-User::setPDO($pdo);
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $email = $_POST['email'];
-    $wachtwoord = $_POST['wachtwoord'];
-    
-    // Controleer als het wachtwoord klopt
-    if (User::login($email, $wachtwoord)) {
-        $_SESSION['user_id'] = User::getUserId($email);
-        header("Location: ../Bestellen/Bestellen.php");
+    $inlog = new Inlog($pdo);
+    if ($inlog->login($name, $password)) {
+        header('Location: ../../Index.php');
         exit();
     } else {
-        header("Location: Inlog.php?error=onjuist_email");
+        $error = 'Ongeldige gebruikersnaam of wachtwoord.';
+        header('Location: Inlog.php?error=' . urlencode($error));
         exit();
     }
+} else {
+    header('Location: Inlog.php');
+    exit();
 }
 ?>

@@ -22,6 +22,7 @@ if (isset($_POST['update_user'])) {
 
 $userData = $account->Getuserdata($userId);
 $orderData = $account->Getbestellingdata($userId);
+$bestellingenMetProducten = $account->GetBestellingenMetProducten($userId);
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -56,20 +57,41 @@ $orderData = $account->Getbestellingdata($userId);
                     <button type="submit" name="update_user" class="btn btn-primary w-100">Gegevens bijwerken</button>
                 </form>
                 <h5>Bestellingen</h5>
-                <?php if ($orderData && count($orderData) > 0): ?>
-                    <ul class="list-group mb-4">
-                        <?php foreach ($orderData as $order): ?>
-                            <li class="list-group-item">
-                                <strong>Bestelling #<?php echo $order['id']; ?>:</strong> <?php echo htmlspecialchars($order['details'] ?? ''); ?>
-                                <span class="float-end">Datum: <?php echo htmlspecialchars($order['order_date'] ?? ''); ?></span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                <?php if ($bestellingenMetProducten && count($bestellingenMetProducten) > 0): ?>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Bestelnummer</th>
+                                    <th>Datum</th>
+                                    <th>Product</th>
+                                    <th>Aantal</th>
+                                    <th>Prijs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $lastOrderId = null;
+                                foreach ($bestellingenMetProducten as $bestel): ?>
+                                    <tr>
+                                        <td><?php echo ($bestel['order_id'] !== $lastOrderId) ? htmlspecialchars($bestel['order_id']) : ''; ?></td>
+                                        <td><?php echo ($bestel['order_id'] !== $lastOrderId) ? htmlspecialchars($bestel['order_date']) : ''; ?></td>
+                                        <td><?php echo htmlspecialchars($bestel['product_name']); ?></td>
+                                        <td><?php echo htmlspecialchars($bestel['quantity']); ?></td>
+                                        <td>€<?php echo number_format($bestel['price'], 2, ',', '.'); ?></td>
+                                    </tr>
+                                <?php $lastOrderId = $bestel['order_id']; endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php else: ?>
                     <div class="alert alert-info">Geen bestellingen gevonden.</div>
                 <?php endif; ?>
                 <div class="d-flex justify-content-between mt-4">
                     <a href="../Inlog/Uitloggen.php" class="btn btn-danger">Uitloggen</a>
+                    <form method="post" onsubmit="return confirm('Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden!');">
+                        <button type="submit" name="delete_account" class="btn btn-outline-danger">Verwijder account</button>
+                    </form>
                     <a href="../../Index.php" class="btn btn-secondary">Terug naar hoofdpagina</a>
                 </div>
             </div>
@@ -77,3 +99,8 @@ $orderData = $account->Getbestellingdata($userId);
     </div>
 </body>
 </html>
+<?php
+if (isset($_POST['delete_account'])) {
+    $account->VerwijderUserEnLogout($userId);
+}
+?>

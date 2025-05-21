@@ -31,6 +31,24 @@ class Bestellen
         }
     }
 
+    // Haal producten uit winkelwagen sessie en bereken totaal
+    public function getCartItems($sessionCart)
+    {
+        $producten = $this->getProducten();
+        $cartItems = [];
+        $totaal = 0;
+        foreach ($sessionCart as $productId) {
+            foreach ($producten as $product) {
+                if ($product['id'] == $productId) {
+                    $cartItems[] = $product;
+                    $totaal += $product['price'];
+                    break;
+                }
+            }
+        }
+        return ['items' => $cartItems, 'totaal' => $totaal];
+    }
+
     // Plaats een bestelling
     public function plaatsBestelling($userId, $producten)
     {
@@ -46,11 +64,12 @@ class Bestellen
 
             // Voeg producten toe aan de order_items tabel
             foreach ($producten as $productId => $aantal) {
-                $query = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, (SELECT price FROM products WHERE id = :product_id))";
+                $query = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, (SELECT price FROM products WHERE id = :product_id_sub))";
                 $stmt = $this->pdo->prepare($query);
                 $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
                 $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
                 $stmt->bindParam(':quantity', $aantal, PDO::PARAM_INT);
+                $stmt->bindParam(':product_id_sub', $productId, PDO::PARAM_INT);
                 $stmt->execute();
             }
 
